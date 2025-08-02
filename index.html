@@ -435,11 +435,12 @@
 <body>
   <h2>تقرير تخطيط شاغلي الوظائف التعليمية</h2>
   <div class="report-info">اسم الموظف: <b>${empName ? empName : '(لم يُكتب الاسم)'}</b></div>
-  <div class="report-info">مدير المدرسة: <b>${managerName ? managerName : '(لم يُكتب الاسم)'}</b></div>
-  <div class="checkbox-info">
+    <div class="checkbox-info">
     <span class="badge">${hasSkills ? 'لديه مهارات' : 'بدون مهارات'}</span>
     <span class="badge">${hasAbility ? 'لديه قدرة' : 'بدون قدرة'}</span>
   </div>
+  <div class="report-info">مدير المدرسة: <b>${managerName ? managerName : '(لم يُكتب الاسم)'}</b></div>
+
   <div class="report-info">تاريخ التقرير: <b>${dateStr}</b></div>
   <table>
     <tr><th>المهمة</th><th>عدد مرات التنفيذ</th><th>النسبة المئوية</th></tr>
@@ -458,5 +459,6 @@
   </script>
 </body>
 </html>
+
 
 
