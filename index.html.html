@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تخطيط شاغلي الوظائف التعليمية</title>
+  <meta name="viewport" content="width=900">
+  <style>
+    body {
+      margin: 0 auto;
+      padding: 0;
+      background: #f6f8f7;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #17423a;
+      max-width: 900px;
+      border-radius: 16px;
+      box-shadow: 0 0 18px #0002;
+    }
+    header {
+      background: #18816d;
+      padding: 32px 0 18px 0;
+      border-radius: 16px 16px 0 0;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .main-title {
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      background: #b9a786;
+      color: #fff;
+      font-size: 1.19rem;
+      padding: 9px 40px;
+      border-radius: 9px;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+    .container {
+      background: #fff;
+      margin: 0 auto;
+      padding: 38px 40px 18px 40px;
+      border-radius: 0 0 16px 16px;
+      max-width: 900px;
+      box-sizing: border-box;
+      min-height: 640px;
+    }
+    label {
+      display: block;
+      margin: 16px 0 8px;
+      color: #18816d;
+      font-size: 1.09rem;
+      font-weight: bold;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 2px solid #b9a786;
+      font-size: 1.15rem;
+      color: #17423a;
+      background: #f6f8f7;
+      margin-bottom: 5px;
+      box-sizing: border-box;
+      resize: none;
+    }
+    textarea {
+      min-height: 75px;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+    .checkbox-group {
+      display: flex;
+      gap: 26px;
+      margin: 14px 0 0 0;
+    }
+    .checkbox-group label {
+      margin: 0;
+      color: #b9a786;
+      font-weight: 700;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tasks-row {
+      display: flex;
+      gap: 36px;
+      margin: 38px 0 0 0;
+      justify-content: space-between;
+    }
+    .tasks-list {
+      background: #e6ede9;
+      color: #18816d;
+      padding: 22px 13px 20px 13px;
+      border-radius: 15px;
+      min-height: 148px;
+      min-width: 250px;
+      flex: 1 1 0;
+      border: 2.5px dashed #b9a786;
+      box-shadow: 0 2px 12px #0001;
+      margin-bottom: 0;
+    }
+    .tasks-list h3 {
+      color: #18816d;
+      font-size: 1.13rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .task-item {
+      background: #18816d;
+      color: #fff;
+      padding: 12px 19px;
+      border-radius: 8px;
+      font-size: 1.08rem;
+      margin-bottom: 11px;
+      cursor: grab;
+      user-select: none;
+      font-weight: 900;
+      box-shadow: 0 2px 8px #0002;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s;
+      letter-spacing: .5px;
+    }
+    .task-item:active {
+      background: #14695a;
+    }
+    .assigned-task {
+      background: #f9f7f3;
+      color: #18816d;
+      padding: 13px 12px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 11px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #0001;
+      min-width: 210px;
+      font-size: 1.08rem;
+      border: 1.4px solid #b9a786;
+    }
+    .assigned-task input[type=number] {
+      width: 65px;
+      border-radius: 8px;
+      border: 1.5px solid #b9a786;
+      padding: 4px 4px;
+      font-size: 1.1rem;
+      text-align: center;
+      font-weight: bold;
+      background: #fff;
+      color: #17423a;
+      margin-right: 6px;
+    }
+    .assigned-task button {
+      background: transparent;
+      border: none;
+      color: #b8000d;
+      font-size: 1.38rem;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .assigned-task label {
+      color: #b9a786;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0 6px 0 0;
+      display: inline;
+    }
+    .dynamic-task-row {
+      display: flex;
+      gap: 7px;
+      margin: 18px 0 8px 0;
+      align-items: center;
+    }
+    .dynamic-task-row input {
+      flex: 1 1 0;
+      margin: 0;
+    }
+    .dynamic-task-row button {
+      background: #18816d;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 7px;
+      padding: 7px 17px;
+      cursor: pointer;
+      margin-right: 0;
+    }
+    .dynamic-task-row button:hover {
+      background: #b9a786;
+      color: #17423a;
+    }
+    .progress-row {
+      text-align: center;
+      margin-top: 34px;
+      font-size: 1.15rem;
+    }
+    .progress-value {
+      font-size: 1.25rem;
+      color: #18816d;
+      font-weight: bold;
+      margin: 0 6px;
+    }
+    .progress-status {
+      font-size: 1.09rem;
+      font-weight: bold;
+      color: #b9a786;
+      margin-top: 5px;
+      display: inline-block;
+      letter-spacing: .8px;
+    }
+    .actions-row {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .main-btn {
+      background: #18816d;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.14rem;
+      padding: 13px 50px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 0 8px;
+      transition: background .18s;
+      box-shadow: 0 2px 10px #0001;
+    }
+    .main-btn:hover {
+      background: #b9a786;
+      color: #17423a;
+    }
+    .footer {
+      text-align: center;
+      color: #b9a786;
+      font-weight: bold;
+      font-size: 1.03rem;
+      margin-top: 48px;
+      padding-bottom: 20px;
+      letter-spacing: .8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="main-title">تخطيط شاغلي الوظائف التعليمية</div>
+    <div class="subtitle">للعام الدراسي 1447هـ - الإصدار الأول</div>
+  </header>
+  <div class="container">
+    <label for="employeeName">اسم الموظف</label>
+    <input type="text" id="employeeName" placeholder="أدخل اسم الموظف">
+
+    <label for="managerName">اسم مدير المدرسة</label>
+    <input type="text" id="managerName" placeholder="أدخل اسم مدير المدرسة">
+
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="hasSkills" /> لديه مهارات</label>
+      <label><input type="checkbox" id="hasAbility" /> لديه قدرة</label>
+    </div>
+
+    <div class="tasks-row">
+      <div class="tasks-list" id="tasksList">
+        <h3>المهام المتاحة</h3>
+        <div class="task-item" draggable="true" data-task="حصص">حصص</div>
+        <div class="task-item" draggable="true" data-task="إشراف">إشراف</div>
+        <div class="task-item" draggable="true" data-task="مناوبة">مناوبة</div>
+        <div class="task-item" draggable="true" data-task="لجان">لجان</div>
+        <div class="task-item" draggable="true" data-task="برامج/أنشطة">برامج/أنشطة</div>
+      </div>
+      <div class="tasks-list" id="assignedTasks">
+        <h3>المهام المسندة</h3>
+      </div>
+    </div>
+
+    <div class="dynamic-task-row">
+      <input type="text" id="newTaskInput" placeholder="اسم مهمة جديدة">
+      <button onclick="addDynamicTask()">إضافة مهمة</button>
+    </div>
+
+    <label for="expectedOutputs" style="margin-top:34px;">المخرجات المتوقعة</label>
+    <textarea id="expectedOutputs" placeholder="اكتب المخرجات المتوقعة هنا..."></textarea>
+
+    <div class="progress-row" id="progressRow" style="display:none;">
+      <span>النسبة الإجمالية:</span>
+      <span class="progress-value" id="progressValue">0%</span>
+      <span class="progress-status" id="progressStatus"></span>
+    </div>
+
+    <div class="actions-row">
+      <button class="main-btn" onclick="generateReport()">تصدير التقرير</button>
+    </div>
+  </div>
+  <div class="footer"></div>
+
+  <script>
+    const assignedTasks = {};
+    const percentPerTask = 4.17;
+    let draggedTask = null;
+
+    function enableDragAndDrop() {
+      document.querySelectorAll('.task-item').forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+          draggedTask = this.getAttribute('data-task');
+        });
+      });
+      document.getElementById('assignedTasks').addEventListener('dragover', function(e) {
+        e.preventDefault();
+      });
+      document.getElementById('assignedTasks').addEventListener('drop', function(e) {
+        e.preventDefault();
+        if (!draggedTask) return;
+        if (assignedTasks[draggedTask]) return;
+        const div = document.createElement('div');
+        div.className = 'assigned-task';
+        div.setAttribute('data-task', draggedTask);
+
+        const label = document.createElement('label');
+        label.innerText = draggedTask + ':';
+        div.appendChild(label);
+
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.min = 0;
+        input.value = 0;
+        input.oninput = updateProgress;
+        div.appendChild(input);
+
+        const btnDel = document.createElement('button');
+        btnDel.innerHTML = '×';
+        btnDel.title = 'حذف المهمة';
+        btnDel.onclick = function() {
+          div.remove();
+          delete assignedTasks[draggedTask];
+          updateProgress();
+        };
+        div.appendChild(btnDel);
+
+        document.getElementById('assignedTasks').appendChild(div);
+        assignedTasks[draggedTask] = div;
+        updateProgress();
+      });
+    }
+    enableDragAndDrop();
+
+    function addDynamicTask() {
+      const name = document.getElementById('newTaskInput').value.trim();
+      if (!name) return;
+      if ([...document.querySelectorAll('.task-item')].some(e => e.getAttribute('data-task') === name)) return;
+      const div = document.createElement('div');
+      div.className = 'task-item';
+      div.draggable = true;
+      div.setAttribute('data-task', name);
+      div.innerText = name;
+      div.addEventListener('dragstart', function(e) {
+        draggedTask = name;
+      });
+      document.getElementById('tasksList').appendChild(div);
+      document.getElementById('newTaskInput').value = '';
+      enableDragAndDrop();
+    }
+
+    function updateProgress() {
+      let total = 0;
+      Object.values(assignedTasks).forEach(div => {
+        let num = parseInt(div.querySelector('input').value) || 0;
+        total += num;
+      });
+      let percent = +(total * percentPerTask).toFixed(2);
+      let status = '';
+      if (percent < 75) status = 'يمكن إضافة مهام جديدة';
+      else if (percent < 85) status = 'مهام عادلة';
+      else status = 'يستحسن تقليص المهام';
+
+      document.getElementById('progressValue').innerText = percent + '%';
+      document.getElementById('progressStatus').innerText = status;
+      document.getElementById('progressRow').style.display = (total > 0) ? 'block' : 'none';
+    }
+
+    function generateReport() {
+      const empName = document.getElementById('employeeName').value.trim();
+      const managerName = document.getElementById('managerName').value.trim();
+      const hasSkills = document.getElementById('hasSkills').checked;
+      const hasAbility = document.getElementById('hasAbility').checked;
+      let rows = '';
+      let total = 0;
+      Object.entries(assignedTasks).forEach(([task, div]) => {
+        let num = parseInt(div.querySelector('input').value) || 0;
+        if (num > 0) {
+          rows += `<tr><td>${task}</td><td>${num}</td><td>${(num * percentPerTask).toFixed(2)}%</td></tr>`;
+          total += num;
+        }
+      });
+      const percent = +(total * percentPerTask).toFixed(2);
+      let status = '';
+      if (percent < 75) status = 'يمكن إضافة مهام جديدة';
+      else if (percent < 85) status = 'مهام عادلة';
+      else status = 'يستحسن تقليص المهام';
+
+      const outputs = (document.getElementById('expectedOutputs').value || '---').replace(/\n/g, '<br>');
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('ar-EG') + ' ' + now.toLocaleTimeString('ar-EG', {hour: '2-digit', minute: '2-digit'});
+      const html = `
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تقرير تخطيط شاغلي الوظائف التعليمية</title>
+  <style>
+    body {background:#f6f8f7;color:#17423a;font-family:Tahoma,Arial,sans-serif;max-width:900px;margin:40px auto 28px auto;padding:38px 45px 28px 45px;border-radius:16px;box-shadow:0 4px 24px #0002;border:2.7px dashed #b9a786;}
+    h2 {text-align:center;color:#18816d;font-weight:900;margin-bottom:22px;font-size:2.1rem;letter-spacing:1px;}
+    .report-info {margin-bottom:13px;font-size:1.14rem;font-weight:600;}
+    table {width:100%;border-collapse:collapse;margin:30px 0 14px 0;}
+    th, td {border:1.8px solid #b9a786;padding:13px 0;text-align:center;font-size:1.12rem;}
+    th {background:#b9a786;color:#fff;}
+    td {background:#fff;}
+    .total-row th, .total-row td {background:#e7e0d2;color:#18816d;font-size:1.18rem;}
+    .status {text-align:center;font-size:1.21rem;font-weight:bold;margin:20px 0 10px 0;}
+    .outputs {margin:14px 0 5px 0;font-size:1.09rem;}
+    .checkbox-info {margin-bottom: 15px;font-size: 1.13rem;font-weight: 600;}
+    .badge {display: inline-block;padding: 5px 20px;border-radius: 18px;font-weight: bold;font-size: 1.11rem;margin-left: 12px;background: #b9a786;color: #fff;}
+  </style>
+</head>
+<body>
+  <h2>تقرير تخطيط شاغلي الوظائف التعليمية</h2>
+  <div class="report-info">اسم الموظف: <b>${empName ? empName : '(لم يُكتب الاسم)'}</b></div>
+  <div class="report-info">مدير المدرسة: <b>${managerName ? managerName : '(لم يُكتب الاسم)'}</b></div>
+  <div class="checkbox-info">
+    <span class="badge">${hasSkills ? 'لديه مهارات' : 'بدون مهارات'}</span>
+    <span class="badge">${hasAbility ? 'لديه قدرة' : 'بدون قدرة'}</span>
+  </div>
+  <div class="report-info">تاريخ التقرير: <b>${dateStr}</b></div>
+  <table>
+    <tr><th>المهمة</th><th>عدد مرات التنفيذ</th><th>النسبة المئوية</th></tr>
+    ${rows || '<tr><td colspan="3" style="color:#b8000d;">لا توجد مهام مسندة</td></tr>'}
+    <tr class="total-row"><th>الإجمالي</th><th>${total}</th><th>${percent}%</th></tr>
+  </table>
+  <div class="status">${status}</div>
+  <div class="outputs"><b>المخرجات المتوقعة:</b><br>${outputs}</div>
+</body>
+</html>
+      `;
+      const win = window.open('', '_blank');
+      win.document.write(html);
+      win.document.close();
+    }
+  </script>
+</body>
+</html>
